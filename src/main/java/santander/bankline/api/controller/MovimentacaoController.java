@@ -9,27 +9,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import santander.bankline.api.dto.NovaMovimentacao;
 import santander.bankline.api.dto.NovoCorrentista;
 import santander.bankline.api.model.Correntista;
+import santander.bankline.api.model.Movimentacao;
 import santander.bankline.api.repository.CorrentistaRepository;
+import santander.bankline.api.repository.MovimentacaoRepository;
 import santander.bankline.api.service.CorrentistaService;
+import santander.bankline.api.service.MovimentacaoService;
 @RestController
-@RequestMapping("/correntistas")
-public class CorrentistaController {
+@RequestMapping("/movimentacoes")
+public class MovimentacaoController {
 	@Autowired
-	private CorrentistaRepository repository;
+	private MovimentacaoRepository repository;
 	
 	@Autowired
-	private CorrentistaService service;
+	private MovimentacaoService service;
 	
 	@GetMapping
-	public List<Correntista>findAll(){
+	public List<Movimentacao>findAll(){
 		return repository.findAll();
 		
 	}
 	@PostMapping
-	public void save(@RequestBody NovoCorrentista correntista) {
-		service.save(correntista);
+	public void save(@RequestBody NovaMovimentacao movimentacao) {
+		service.save(movimentacao);
 		
 	}
 }
